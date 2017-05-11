@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javaalpha;
 
 /**
  *
  * @author avos
  */
+
+class FreshJuice{
+    enum FreshJuiceSize {Small, Medium, Large}
+    FreshJuiceSize size;
+}
+
 public class JavaAlpha {
 
     /**
@@ -16,7 +17,9 @@ public class JavaAlpha {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello Java");
+        FreshJuice juice = new FreshJuice();
+        juice.size = FreshJuice.FreshJuiceSize.Medium;
+        System.out.println("Size : " + juice.size);
     }
     
 }

@@ -1,10 +1,10 @@
 package javaalpha;
 
+import java.sql.*;
 /**
  *
  * @author avos
  */
-
 
 public class JavaAlpha {
     int puppyAge;

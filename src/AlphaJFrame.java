@@ -11,6 +11,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(url);
+            System.out.println("Connection Granted");
         }catch(SQLException e){
             System.out.println("Connection Error");
         }
@@ -192,12 +193,13 @@ public class AlphaJFrame extends javax.swing.JFrame {
     private void svActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svActionPerformed
         // TODO add your handling code here:
         Date date = new Date(4,2,2);
-        String sql = "insert into movie (title, tanggal, episode, keterangan, rating, country, lang, genre, tglinput) values ('"+jdl+"', '"+dt+"', '"+epi+"', '"+ket+"', '5', '"+count+"', '"+lang+"', '"+gen+"', '"+date+"')";
+        String sql = "insert into movie (title) values (?)";
         try(Connection conn = this.connect();
                 PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.executeQuery(sql);
+            stmt.setString(1, jdl.getText());
+            stmt.executeUpdate();
         }catch (SQLException e){
-            
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_svActionPerformed
 

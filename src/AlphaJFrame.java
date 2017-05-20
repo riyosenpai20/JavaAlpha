@@ -3,6 +3,8 @@
  * @author avos
  */
 import java.sql.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class AlphaJFrame extends javax.swing.JFrame {
     
@@ -49,7 +51,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
         lang = new javax.swing.JComboBox<>();
         gen = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        showTab = new javax.swing.JTable();
         sv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,13 +59,11 @@ public class AlphaJFrame extends javax.swing.JFrame {
         jLabel1.setText("Title");
         jLabel1.setToolTipText("");
 
-        jdl.setText("Judul");
         jdl.setName("title"); // NOI18N
 
         jLabel2.setText("Date");
         jLabel2.setToolTipText("");
 
-        dt.setText("Date");
         dt.setName("date"); // NOI18N
 
         jLabel3.setText("Episode");
@@ -76,22 +76,20 @@ public class AlphaJFrame extends javax.swing.JFrame {
         ket.setName("ket"); // NOI18N
         jScrollPane1.setViewportView(ket);
 
-        epi.setText("Episode");
-
         jLabel5.setText("Country");
 
-        count.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        count.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "America", "Korea", "Chinese", "Japan", "Thailand", "Indonesia", "British" }));
         count.setName("country"); // NOI18N
 
         jLabel6.setText("Language");
 
         jLabel7.setText("Genre");
 
-        lang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", "Korean", "Chinese", "Japanese", "Thai", "Indonesian" }));
 
-        gen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Romance", "Comedy", "Sci-Fi" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        showTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,7 +100,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(showTab);
 
         sv.setText("Simpan");
         sv.addActionListener(new java.awt.event.ActionListener() {
@@ -252,10 +250,10 @@ public class AlphaJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     public javax.swing.JTextField jdl;
     public javax.swing.JTextArea ket;
     public javax.swing.JComboBox<String> lang;
+    public javax.swing.JTable showTab;
     public javax.swing.JButton sv;
     // End of variables declaration//GEN-END:variables
 }

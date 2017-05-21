@@ -5,6 +5,8 @@
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
+import java.text.*;
 
 public class AlphaJFrame extends javax.swing.JFrame {
     
@@ -19,10 +21,16 @@ public class AlphaJFrame extends javax.swing.JFrame {
         }
         return conn;
     }
+    public static String dateNow(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("Y-m-d");
+        return sdf.format(date);
+    }
     /**
      * Creates new form AlphaJFrame
      */
     public AlphaJFrame() {
+        dt.setText(dateNow());
         initComponents();
     }
 
@@ -38,7 +46,6 @@ public class AlphaJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jdl = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        dt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,6 +60,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         showTab = new javax.swing.JTable();
         sv = new javax.swing.JButton();
+        dt = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,8 +71,6 @@ public class AlphaJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Date");
         jLabel2.setToolTipText("");
-
-        dt.setName("date"); // NOI18N
 
         jLabel3.setText("Episode");
 
@@ -109,6 +115,8 @@ public class AlphaJFrame extends javax.swing.JFrame {
             }
         });
 
+        dt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("Y-m-d"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,9 +136,9 @@ public class AlphaJFrame extends javax.swing.JFrame {
                             .addGap(31, 31, 31)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jdl)
-                                .addComponent(dt)
                                 .addComponent(epi)
-                                .addComponent(lang, 0, 213, Short.MAX_VALUE))
+                                .addComponent(lang, 0, 213, Short.MAX_VALUE)
+                                .addComponent(dt))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
@@ -238,7 +246,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> count;
-    public javax.swing.JTextField dt;
+    public javax.swing.JFormattedTextField dt;
     public javax.swing.JTextField epi;
     public javax.swing.JComboBox<String> gen;
     private javax.swing.JLabel jLabel1;

@@ -4,9 +4,11 @@
  */
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Date;
 import java.text.*;
+import java.io.*;
 
 public class AlphaJFrame extends javax.swing.JFrame {
     
@@ -25,6 +27,28 @@ public class AlphaJFrame extends javax.swing.JFrame {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("Y-m-d");
         return sdf.format(date);
+    }
+    public DefaultTableModel isi() throws ClassNotFoundException,SQLException,ParseException{
+        String[] columnNames = {"Title", "Year", "Language", "Country"};
+        DefaultTableModel dtm = new DefaultTableModel(columnNames, 0);
+        dtm.setColumnCount(4);
+        String sql = "select * from movie";
+        ResultSet rs = null;
+        try(Connection conn = this.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql)){
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                dtm.addRow(new Object[]{
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(6),
+                    rs.getString(2)
+                });
+            }
+        }finally{
+            rs.close();
+        }
+        return dtm;
     }
     /**
      * Creates new form AlphaJFrame

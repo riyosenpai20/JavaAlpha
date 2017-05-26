@@ -66,6 +66,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jdl = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -80,11 +81,10 @@ public class AlphaJFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         lang = new javax.swing.JComboBox<>();
         gen = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        showTab = new javax.swing.JTable();
         sv = new javax.swing.JButton();
         dt = new javax.swing.JFormattedTextField();
         rating = new javax.swing.JSlider();
+        brows = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,19 +119,6 @@ public class AlphaJFrame extends javax.swing.JFrame {
 
         gen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Romance", "Comedy", "Sci-Fi" }));
 
-        showTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title", "Year", "Language", "Country"
-            }
-        ));
-        jScrollPane2.setViewportView(showTab);
-
         sv.setText("Simpan");
         sv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,11 +133,10 @@ public class AlphaJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -172,12 +158,16 @@ public class AlphaJFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                                     .addComponent(count, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(gen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(rating, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                                    .addComponent(gen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(rating, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 11, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sv)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(brows, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -212,12 +202,12 @@ public class AlphaJFrame extends javax.swing.JFrame {
                         .addComponent(lang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7))
                     .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(sv)
-                    .addComponent(rating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(rating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(brows, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(sv)
                 .addContainerGap())
         );
 
@@ -227,7 +217,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
     private void svActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svActionPerformed
         // TODO add your handling code here:
         Date date = new Date(4,2,2);
-        String sql = "insert into movie (title, tanggal, episode, keterangan, country, lang, genre, tglinput, rating) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into movie (title, tanggal, episode, keterangan, country, lang, genre, tglinput, rating,src) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection conn = this.connect();
                 PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, jdl.getText());
@@ -239,6 +229,7 @@ public class AlphaJFrame extends javax.swing.JFrame {
             stmt.setString(7, gen.getSelectedItem().toString());
             stmt.setString(8, dateNow());
             stmt.setInt(9, rating.getValue());
+            stmt.setString(10, brows.getSelectedFile().getAbsolutePath());
             stmt.executeUpdate();
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -281,10 +272,12 @@ public class AlphaJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JFileChooser brows;
     public javax.swing.JComboBox<String> count;
     public javax.swing.JFormattedTextField dt;
     public javax.swing.JTextField epi;
     public javax.swing.JComboBox<String> gen;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,12 +286,10 @@ public class AlphaJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextField jdl;
     public javax.swing.JTextArea ket;
     public javax.swing.JComboBox<String> lang;
     public javax.swing.JSlider rating;
-    public javax.swing.JTable showTab;
     public javax.swing.JButton sv;
     // End of variables declaration//GEN-END:variables
 }

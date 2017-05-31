@@ -13,7 +13,7 @@ import java.io.*;
 public class AlphaJFrame extends javax.swing.JFrame {
     
     private Connection connect(){
-        String url = "jdbc:sqlite:D://AvosLab/JavaAlpha/alpha.db";
+        String url = "jdbc:sqlite:D://Riyo/AvosLab/JavaAlpha/alpha.db";
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(url);
